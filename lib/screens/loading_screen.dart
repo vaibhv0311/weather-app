@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:weatherly/services/location.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -7,17 +7,7 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  void getLocation() async {
-    try{
-      Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.low);
-      LocationPermission permission = await Geolocator.requestPermission();
-      print(position);
-    }
-    catch(e){
-      print(e);
-    }
-  }
+  Location l1 = new Location();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +16,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
         child: ElevatedButton(
           onPressed: () {
             //Get the current location
-            getLocation();
+            l1.getLocation();
+            print(l1.latitude);
+            print(l1.longitude);
           },
           child: Text('Get Location'),
         ),
