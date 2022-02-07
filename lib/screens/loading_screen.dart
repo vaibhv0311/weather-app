@@ -14,9 +14,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
     return Scaffold(
       body: Center(
         child: ElevatedButton(
-          onPressed: () {
+          onPressed: () async {
             //Get the current location
-            l1.getLocation();
+            await l1.getLocation();
             print(l1.latitude);
             print(l1.longitude);
           },
